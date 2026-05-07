@@ -1,0 +1,17 @@
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Infrastructure.deps.json
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Infrastructure.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Infrastructure.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Application.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Core.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Application.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\bin\Debug\net8.0\Teachly.Core.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.AssemblyInfo.cs
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly..60EA754E.Up2Date
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\refint\Teachly.Infrastructure.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\ref\Teachly.Infrastructure.dll

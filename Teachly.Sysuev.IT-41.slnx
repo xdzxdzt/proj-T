@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Teachly.API/Teachly.API.csproj" />
+  <Project Path="Teachly.Application/Teachly.Application.csproj" />
+  <Project Path="Teachly.Core/Teachly.Core.csproj" />
+  <Project Path="Teachly.DataAccess/Teachly.DataAccess.csproj" />
+  <Project Path="Teachly.Infrastructure/Teachly.Infrastructure.csproj" Id="7422b717-ca4d-408c-ac0a-acc9385caf42" />
+</Solution>

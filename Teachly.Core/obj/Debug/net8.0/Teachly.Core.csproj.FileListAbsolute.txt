@@ -1,0 +1,12 @@
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\bin\Debug\net8.0\Teachly.Core.deps.json
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\bin\Debug\net8.0\Teachly.Core.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\bin\Debug\net8.0\Teachly.Core.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.AssemblyInfoInputs.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.AssemblyInfo.cs
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.csproj.CoreCompileInputs.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\refint\Teachly.Core.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\ref\Teachly.Core.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Core\obj\Debug\net8.0\Teachly.Core.csproj.AssemblyReference.cache

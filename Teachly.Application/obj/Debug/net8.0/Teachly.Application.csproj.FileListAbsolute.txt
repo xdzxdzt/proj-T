@@ -1,0 +1,15 @@
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\bin\Debug\net8.0\Teachly.Application.deps.json
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\bin\Debug\net8.0\Teachly.Application.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\bin\Debug\net8.0\Teachly.Application.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.AssemblyInfoInputs.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.AssemblyInfo.cs
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.csproj.CoreCompileInputs.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\refint\Teachly.Application.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\ref\Teachly.Application.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly.Application.csproj.AssemblyReference.cache
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\bin\Debug\net8.0\Teachly.Core.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\bin\Debug\net8.0\Teachly.Core.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Application\obj\Debug\net8.0\Teachly..6C45A2AE.Up2Date
