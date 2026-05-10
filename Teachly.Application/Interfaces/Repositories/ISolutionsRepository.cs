@@ -1,4 +1,4 @@
-using Teachly.Core.Models;
+﻿using Teachly.Core.Models;
 
 namespace Teachly.Application.Interfaces.Repositories
 {
@@ -8,5 +8,6 @@ namespace Teachly.Application.Interfaces.Repositories
         Task<Solution?> GetById(Guid id);
         Task<List<Solution>> GetAllByStudentId(Guid studentId);
         Task<List<Solution>> GetAllByTutorTaskId(Guid tutorTaskId);
+        Task<bool> ExistsByTutorTaskIdAndStudentId(Guid tutorTaskId, Guid studentId);
     }
 }

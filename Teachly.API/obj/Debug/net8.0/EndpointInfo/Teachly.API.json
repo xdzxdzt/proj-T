@@ -114,6 +114,19 @@
           "password": {
             "type": "string",
             "nullable": true
+          },
+          "institutionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "educationLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentPhone": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -142,6 +155,10 @@
             "nullable": true
           },
           "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
             "type": "string",
             "nullable": true
           }

@@ -1,6 +1,5 @@
-﻿using Teachly.API.Contracts;
-using Teachly.Application.Services;
-using Teachly.Core.Enums;
+﻿using Teachly.API.Contracts.Auth;
+using Teachly.Application.Interfaces.Services;
 
 namespace Teachly.API.EndPoints
 {
@@ -17,35 +16,37 @@ namespace Teachly.API.EndPoints
             return app;
         }
 
-        private static async Task<IResult> RegisterStudent(RegisterStudentRequest request, UsersService usersService)
+        private static async Task<IResult> RegisterStudent(RegisterStudentRequest request, IUsersService usersService)
         {
-            await usersService.Register(
+            await usersService.RegisterStudent(
                 request.UserName,
                 request.FirstName,
                 request.LastName,
                 request.Age,
                 request.Email,
                 request.Password,
-                UserRole.Student);
+                request.InstitutionId,
+                request.EducationLevel,
+                request.ParentPhone);
 
             return Results.Ok();
         }
 
-        private static async Task<IResult> RegisterTutor(RegisterTutorRequest request, UsersService usersService)
+        private static async Task<IResult> RegisterTutor(RegisterTutorRequest request, IUsersService usersService)
         {
-            await usersService.Register(
+            await usersService.RegisterTutor(
                 request.UserName,
                 request.FirstName,
                 request.LastName,
                 request.Age,
                 request.Email,
                 request.Password,
-                UserRole.Tutor);
+                request.Description);
 
             return Results.Ok();
         }
 
-        private static async Task<IResult> Login(LoginUserRequest request, UsersService usersService, HttpContext context)
+        private static async Task<IResult> Login(LoginUserRequest request, IUsersService usersService, HttpContext context)
         {
             var token = await usersService.Login(request.Email, request.Password);
 

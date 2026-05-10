@@ -71,6 +71,13 @@ namespace Teachly.DataAccess.Repositories
             return solutions;
         }
 
+        public async Task<bool> ExistsByTutorTaskIdAndStudentId(Guid tutorTaskId, Guid studentId)
+        {
+            return await _context.Solutions
+                .Where(x => x.TutorTaskId == tutorTaskId && x.StudentId == studentId)
+                .AnyAsync();
+        }
+
         private static Solution MapToDomain(SolutionEntity solutionEntity)
         {
             var result = Solution.Create(

@@ -21,7 +21,7 @@ namespace Teachly.DataAccess.Repositories
                 Id = tutorSubject.Id,
                 TutorId = tutorSubject.TutorId,
                 SubjectId = tutorSubject.SubjectId,
-                PricePerHour = tutorSubject.PricePerHour
+                PricePerLesson = tutorSubject.PricePerLesson
             };
 
             await _context.TutorSubjects.AddAsync(tutorSubjectEntity);
@@ -69,7 +69,7 @@ namespace Teachly.DataAccess.Repositories
                 tutorSubjectEntity.Id,
                 tutorSubjectEntity.TutorId,
                 tutorSubjectEntity.SubjectId,
-                tutorSubjectEntity.PricePerHour);
+                tutorSubjectEntity.PricePerLesson);
 
             if(result.IsFailure)
             {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Teachly.Core.Models;
 
-namespace Teachly.API.Contracts
+namespace Teachly.API.Contracts.Auth
 {
     public record RegisterStudentRequest(
         [Required]
@@ -25,5 +25,13 @@ namespace Teachly.API.Contracts
         string Email,
 
         [Required]
-        string Password);
+        string Password,
+
+        Guid? InstitutionId,
+
+        [Range(1, 11)]
+        int EducationLevel,
+
+        [MaxLength(Student.MAX_LENGTH_PARENTPHONE)]
+        string? ParentPhone);
 }

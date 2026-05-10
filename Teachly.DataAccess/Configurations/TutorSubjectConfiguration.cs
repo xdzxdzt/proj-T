@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Teachly.DataAccess.Entities;
 
@@ -10,7 +10,7 @@ namespace Teachly.DataAccess.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.PricePerHour)
+            builder.Property(x => x.PricePerLesson)
                 .HasPrecision(10, 2)
                 .IsRequired();
 
@@ -28,7 +28,7 @@ namespace Teachly.DataAccess.Configurations
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.ToTable(t =>
-                t.HasCheckConstraint("CK_TutorSubjects_PricePerHour", "\"PricePerHour\" > 0"));
+                t.HasCheckConstraint("CK_TutorSubjects_PricePerLesson", "\"PricePerLesson\" > 0"));
         }
     }
 }

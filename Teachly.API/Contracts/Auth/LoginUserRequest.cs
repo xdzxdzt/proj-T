@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Teachly.Core.Models;
 
-namespace Teachly.API.Contracts
+namespace Teachly.API.Contracts.Auth
 {
     public record LoginUserRequest(
         [Required]

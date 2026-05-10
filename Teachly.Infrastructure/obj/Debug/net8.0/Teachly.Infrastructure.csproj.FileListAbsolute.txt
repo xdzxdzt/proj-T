@@ -15,3 +15,4 @@ C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.I
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\refint\Teachly.Infrastructure.dll
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.pdb
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\ref\Teachly.Infrastructure.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.Infrastructure\obj\Debug\net8.0\Teachly.Infrastructure.sourcelink.json

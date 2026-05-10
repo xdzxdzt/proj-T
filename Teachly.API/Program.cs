@@ -6,6 +6,7 @@ using Teachly.DataAccess.Repositories;
 using Teachly.Infrastructure;
 using Teachly.API.EndPoints;
 using Microsoft.AspNetCore.CookiePolicy;
+using Teachly.Application.Interfaces.Services;
 using Teachly.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,7 +41,14 @@ services.AddScoped<IReviewsRepository, ReviewsRepository>();
 
 services.AddScoped<IPasswordHasher, PasswordHasher>();
 services.AddScoped<IJwtProvider, JwtProvider>();
-services.AddScoped<UsersService>();
+services.AddScoped<IUsersService, UsersService>();
+services.AddScoped<ITutorSubjectService, TutorSubjectService>();
+services.AddScoped<ILessonPackagesService, LessonPackagesService>();
+services.AddScoped<ITutorTasksService, TutorTasksService>();
+services.AddScoped<ISolutionsService, SolutionsService>();
+services.AddScoped<ITutorFeedbacksService, TutorFeedbacksService>();
+services.AddScoped<IReviewsService, ReviewsService>();
+services.AddScoped<IReportsService, ReportsService>();
 
 var app = builder.Build();
 

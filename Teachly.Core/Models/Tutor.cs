@@ -57,7 +57,7 @@ namespace Teachly.Core.Models
             return Result.Success(tutor);
         }
 
-        public Result AddReview(short newRating)
+        public Result AddRating(short newRating)
         {
             if (newRating < 1 || newRating > 5)
             {

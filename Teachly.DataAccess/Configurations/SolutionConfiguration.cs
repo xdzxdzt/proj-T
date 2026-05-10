@@ -18,6 +18,9 @@ namespace Teachly.DataAccess.Configurations
             builder.Property(x => x.SubmittedAt)
                 .IsRequired();
 
+            builder.HasIndex(x => new { x.TutorTaskId, x.StudentId })
+                .IsUnique();
+
             builder.HasOne(x => x.TutorTask)
                 .WithMany(x => x.Solutions)
                 .HasForeignKey(x => x.TutorTaskId)

@@ -17,3 +17,4 @@ C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.I
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.DataAccess\obj\Debug\net8.0\ref\Teachly.DataAccess.dll
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.DataAccess\bin\Debug\net8.0\Teachly.Application.dll
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.DataAccess\bin\Debug\net8.0\Teachly.Application.pdb
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.DataAccess\obj\Debug\net8.0\Teachly.DataAccess.sourcelink.json

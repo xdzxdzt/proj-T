@@ -1,23 +1,23 @@
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 
 namespace Teachly.Core.Models
 {
     public class TutorSubject
     {
-        private TutorSubject(Guid id, Guid tutorId, Guid subjectId, decimal pricePerHour)
+        private TutorSubject(Guid id, Guid tutorId, Guid subjectId, decimal pricePerLesson)
         {
             Id = id;
             TutorId = tutorId;
             SubjectId = subjectId;
-            PricePerHour = pricePerHour;
+            PricePerLesson = pricePerLesson;
         }
 
         public Guid Id { get; private set; }
         public Guid TutorId { get; private set; }
         public Guid SubjectId { get; private set; }
-        public decimal PricePerHour { get; private set; }
+        public decimal PricePerLesson { get; private set; }
 
-        public static Result<TutorSubject> Create(Guid id, Guid tutorId, Guid subjectId, decimal pricePerHour)
+        public static Result<TutorSubject> Create(Guid id, Guid tutorId, Guid subjectId, decimal pricePerLesson)
         {
             if (id == Guid.Empty)
             {
@@ -31,12 +31,12 @@ namespace Teachly.Core.Models
             {
                 return Result.Failure<TutorSubject>($"'{nameof(subjectId)}' не может быть пустым");
             }
-            if (pricePerHour <= 0)
+            if (pricePerLesson <= 0)
             {
-                return Result.Failure<TutorSubject>($"'{nameof(pricePerHour)}' должна быть больше 0");
+                return Result.Failure<TutorSubject>($"'{nameof(pricePerLesson)}' должна быть больше 0");
             }
 
-            var tutorSubject = new TutorSubject(id, tutorId, subjectId, pricePerHour);
+            var tutorSubject = new TutorSubject(id, tutorId, subjectId, pricePerLesson);
 
             return Result.Success(tutorSubject);
         }

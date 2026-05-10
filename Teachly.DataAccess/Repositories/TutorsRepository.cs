@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using Teachly.Application.Interfaces.Repositories;
 using Teachly.Core.Models;
 using Teachly.DataAccess.Entities;
@@ -62,6 +63,21 @@ namespace Teachly.DataAccess.Repositories
             return await _context.Tutors
                 .AsNoTracking()
                 .AnyAsync(t => t.UserId == userId);
+        }
+
+        public async Task Update(Tutor tutor)
+        {
+            var rowsAffected = await _context.Tutors
+                .Where(t => t.Id == tutor.Id)
+                .ExecuteUpdateAsync(t => t
+                    .SetProperty(x => x.Description, tutor.Description)
+                    .SetProperty(x => x.AverageRating, tutor.AverageRating)
+                    .SetProperty(x => x.RatingCount, tutor.RatingCount));
+
+            if (rowsAffected == 0)
+            {
+                throw new InvalidOperationException("Репетитор не найден");
+            }
         }
 
         private static Tutor MapToDomain(TutorEntity tutorEntity)

@@ -1,24 +1,100 @@
 ﻿using Teachly.Application.Interfaces.Auth;
 using Teachly.Application.Interfaces.Repositories;
+using Teachly.Application.Interfaces.Services;
 using Teachly.Core.Enums;
 using Teachly.Core.Models;
 
 namespace Teachly.Application.Services
 {
-    public class UsersService
+    public class UsersService : IUsersService
     {
         private readonly IPasswordHasher _passwordHasher;
         private readonly IUsersRepository _usersRepository;
+        private readonly IStudentsRepository _studentsRepository;
+        private readonly ITutorsRepository _tutorsRepository;
+        private readonly IInstitutionsRepository _institutionsRepository;
         private readonly IJwtProvider _jwtProvider;
 
-        public UsersService(IPasswordHasher passwordHasher, IUsersRepository usersRepository, IJwtProvider jwtProvider)
+        public UsersService(
+            IPasswordHasher passwordHasher,
+            IUsersRepository usersRepository,
+            IStudentsRepository studentsRepository,
+            ITutorsRepository tutorsRepository,
+            IInstitutionsRepository institutionsRepository,
+            IJwtProvider jwtProvider)
         {
             _passwordHasher = passwordHasher;
             _usersRepository = usersRepository;
+            _studentsRepository = studentsRepository;
+            _tutorsRepository = tutorsRepository;
+            _institutionsRepository = institutionsRepository;
             _jwtProvider = jwtProvider;
         }
 
-        public async Task Register(string userName, string firstName, string lastName, int age, string email, string password, UserRole role)
+        public async Task RegisterStudent(
+            string userName, 
+            string firstName,
+            string lastName,
+            int age,
+            string email,
+            string password,
+            Guid? institutionId,
+            int educationLevel,
+            string? parentPhone)
+        {
+            if(await _usersRepository.ExistsByEmail(email))
+            {
+                throw new InvalidOperationException("Пользователь с таким Email уже существует");
+            }
+
+            if (institutionId is not null)
+            {
+                var institution = await _institutionsRepository.GetById(institutionId.Value);
+
+                if (institution is null)
+                {
+                    throw new InvalidOperationException("Учебное заведение не найдено");
+                }
+            }
+
+            var hashedPassword = _passwordHasher.Generate(password);
+
+            var user = User.Create(
+                Guid.NewGuid(), 
+                userName, firstName, 
+                lastName, age, email, 
+                hashedPassword, 
+                UserRole.Student);
+
+            if (user.IsFailure)
+            {
+                throw new InvalidOperationException(user.Error);
+            }
+
+            var student = Student.Create(
+                Guid.NewGuid(),
+                user.Value.Id, 
+                institutionId, 
+                educationLevel, 
+                parentPhone);
+
+            if(student.IsFailure)
+            {
+                throw new InvalidOperationException(student.Error);
+            }
+
+            await _usersRepository.Add(user.Value);
+            await _studentsRepository.Add(student.Value);
+        }
+
+        public async Task RegisterTutor(
+            string userName, 
+            string firstName, 
+            string lastName, 
+            int age, 
+            string email, 
+            string password,
+            string? description)
         {
             if (await _usersRepository.ExistsByEmail(email))
             {
@@ -27,14 +103,25 @@ namespace Teachly.Application.Services
 
             var hashedPassword = _passwordHasher.Generate(password);
 
-            var user = User.Create(Guid.NewGuid(), userName, firstName, lastName, age, email, hashedPassword, role);
+            var user = User.Create(Guid.NewGuid(), userName, firstName, lastName, age, email, hashedPassword, UserRole.Tutor);
 
             if (user.IsFailure)
             {
                 throw new InvalidOperationException(user.Error);
             }
 
+            var tutor = Tutor.Create(
+                Guid.NewGuid(), 
+                user.Value.Id, 
+                description);
+
+            if (tutor.IsFailure)
+            {
+                throw new InvalidOperationException(tutor.Error);
+            }
+
             await _usersRepository.Add(user.Value);
+            await _tutorsRepository.Add(tutor.Value);
         }
 
         public async Task<string> Login(string email, string password)
@@ -43,14 +130,14 @@ namespace Teachly.Application.Services
 
             if (user is null)
             {
-                throw new Exception("Пользователя с таким Email не найдено");
+                throw new InvalidOperationException("Пользователя с таким Email не найдено");
             }
 
             var result = _passwordHasher.Verify(password, user.PasswordHash);
 
-            if(result == false)
+            if (result == false)
             {
-                throw new Exception("Не правильно введен пароль");
+                throw new InvalidOperationException("Неправильно введен пароль");
             }
 
             var token = _jwtProvider.GenerateToken(user);

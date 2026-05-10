@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Teachly.Core.Models;
 
-namespace Teachly.API.Contracts
+namespace Teachly.API.Contracts.Auth
 {
     public record RegisterTutorRequest(
         [Required]
@@ -25,5 +25,8 @@ namespace Teachly.API.Contracts
         string Email,
 
         [Required]
-        string Password);
+        string Password,
+
+        [MaxLength(Tutor.MAX_DESCRIPTION_LENGTH)]
+        string? Description);
 }

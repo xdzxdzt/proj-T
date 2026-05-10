@@ -130,3 +130,5 @@ C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.I
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.API\obj\Debug\net8.0\Teachly.API.sourcelink.json
+C:\Users\r4zyj\OneDrive\Документы\Диплом\Backend\Teachly.Sysuev.IT-41\Teachly.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
