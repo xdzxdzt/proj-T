@@ -5,7 +5,6 @@ namespace Teachly.Core.Models
     public class Solution
     {
         public const int MAX_LENGTH_ANSWERTEXT = 2000;
-
         private Solution(Guid id, Guid tutorTaskId, Guid studentId, string answerText, DateTime submittedAt)
         {
             Id = id;

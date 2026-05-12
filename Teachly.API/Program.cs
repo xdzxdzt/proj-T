@@ -8,6 +8,7 @@ using Teachly.API.EndPoints;
 using Microsoft.AspNetCore.CookiePolicy;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Application.Services;
+using Teachly.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -48,6 +49,7 @@ services.AddScoped<ITutorTasksService, TutorTasksService>();
 services.AddScoped<ISolutionsService, SolutionsService>();
 services.AddScoped<ITutorFeedbacksService, TutorFeedbacksService>();
 services.AddScoped<IReviewsService, ReviewsService>();
+//Нужно доделать
 services.AddScoped<IReportsService, ReportsService>();
 
 var app = builder.Build();
@@ -60,6 +62,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 //Опции для куки
 app.UseCookiePolicy(new CookiePolicyOptions
@@ -74,6 +77,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapUsersEndpoints();
+app.AddMappedEndpoints();
 
 app.Run();

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Teachly.API.Endpoints;
 using Teachly.API.EndPoints;
 using Teachly.Infrastructure;
 
@@ -12,6 +13,12 @@ namespace Teachly.API.Extensions
         public static void AddMappedEndpoints(this IEndpointRouteBuilder app)
         {
             app.MapUsersEndpoints();
+            app.MapTutorTasksEndpoints();
+            app.MapTutorSubjectsEndpoints();
+            app.MapTutorFeedbackEndpoints();
+            app.MapSolutionsEndpoints();
+            app.MapReviewsEndpoints();
+            app.MapLessonsEndpoints();
         }
 
         public static void AddApiAuthentication(this IServiceCollection services, IOptions<JwtOptions> jwtOptions)

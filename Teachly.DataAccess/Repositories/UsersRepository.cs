@@ -87,7 +87,37 @@ namespace Teachly.DataAccess.Repositories
                 throw new InvalidOperationException(result.Error);
             }
 
+            if (!string.IsNullOrWhiteSpace(userEntity.AvatarUrl))
+            {
+                var avatarResult = result.Value.SetAvatarUrl(userEntity.AvatarUrl);
+
+                if (avatarResult.IsFailure)
+                {
+                    throw new InvalidOperationException(avatarResult.Error);
+                }
+            }
+
             return result.Value;
+        }
+
+        public async Task Update(User user)
+        {
+            var rowsAffected = await _context.Users
+                .Where(u => u.Id == user.Id)
+                .ExecuteUpdateAsync(u => u
+                    .SetProperty(x => x.UserName, user.UserName)
+                    .SetProperty(x => x.FirstName, user.FirstName)
+                    .SetProperty(x => x.LastName, user.LastName)
+                    .SetProperty(x => x.Age, user.Age)
+                    .SetProperty(x => x.Email, user.Email)
+                    .SetProperty(x => x.PasswordHash, user.PasswordHash)
+                    .SetProperty(x => x.AvatarUrl, user.AvatarUrl)
+                    .SetProperty(x => x.Role, user.Role));
+
+            if (rowsAffected == 0)
+            {
+                throw new InvalidOperationException("Пользователь не найден");
+            }
         }
     }
 }

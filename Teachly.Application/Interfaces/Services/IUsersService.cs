@@ -1,3 +1,5 @@
+using Teachly.Core.Models;
+
 namespace Teachly.Application.Interfaces.Services
 {
     public interface IUsersService
@@ -23,5 +25,11 @@ namespace Teachly.Application.Interfaces.Services
             string? description);
 
         Task<string> Login(string email, string password);
+
+        Task<(Student Student, User User)> GetStudentProfile(Guid studentId);
+
+        Task<(Tutor Tutor, User User)> GetTutorProfile(Guid tutorId);
+
+        Task SetAvatar(Guid userId, string avatarUrl);
     }
 }

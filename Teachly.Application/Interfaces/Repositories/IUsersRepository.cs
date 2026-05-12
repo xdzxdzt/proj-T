@@ -8,5 +8,6 @@ namespace Teachly.Application.Interfaces.Repositories
         Task<User?> GetById(Guid id);
         Task<User?> GetByEmail(string email);
         Task<bool> ExistsByEmail(string email);
+        Task Update(User user);
     }
 }

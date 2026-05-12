@@ -1,6 +1,5 @@
-﻿using Teachly.Application.Interfaces.Repositories;
+using Teachly.Application.Interfaces.Repositories;
 using Teachly.Application.Interfaces.Services;
-using Teachly.Application.DTOs;
 
 namespace Teachly.Application.Services
 {
@@ -19,8 +18,9 @@ namespace Teachly.Application.Services
             _solutionsRepository = solutionsRepository;
             _tutorFeedbacksRepository = tutorFeedbacksRepository;
         }
+
         //Доделать
-        public async Task<StudentProgressReportDto> GetStudentProgressReport(Guid studentId)
+        public async Task<(Guid StudentId, int SubmittedSolutions, int CheckedSolutions, double AverageGrade)> GetStudentProgressReport(Guid studentId)
         {
             var student = await _studentsRepository.GetById(studentId);
 
@@ -31,7 +31,7 @@ namespace Teachly.Application.Services
 
             var solutions = await _solutionsRepository.GetAllByStudentId(student.Id);
 
-            return new StudentProgressReportDto(Guid.NewGuid(), 11, 11, 11);
+            return (student.Id, 11, 11, 11);
         }
     }
 }

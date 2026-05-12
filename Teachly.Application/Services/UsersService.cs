@@ -1,4 +1,4 @@
-﻿using Teachly.Application.Interfaces.Auth;
+using Teachly.Application.Interfaces.Auth;
 using Teachly.Application.Interfaces.Repositories;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Core.Enums;
@@ -32,7 +32,7 @@ namespace Teachly.Application.Services
         }
 
         public async Task RegisterStudent(
-            string userName, 
+            string userName,
             string firstName,
             string lastName,
             int age,
@@ -42,7 +42,7 @@ namespace Teachly.Application.Services
             int educationLevel,
             string? parentPhone)
         {
-            if(await _usersRepository.ExistsByEmail(email))
+            if (await _usersRepository.ExistsByEmail(email))
             {
                 throw new InvalidOperationException("Пользователь с таким Email уже существует");
             }
@@ -60,10 +60,13 @@ namespace Teachly.Application.Services
             var hashedPassword = _passwordHasher.Generate(password);
 
             var user = User.Create(
-                Guid.NewGuid(), 
-                userName, firstName, 
-                lastName, age, email, 
-                hashedPassword, 
+                Guid.NewGuid(),
+                userName,
+                firstName,
+                lastName,
+                age,
+                email,
+                hashedPassword,
                 UserRole.Student);
 
             if (user.IsFailure)
@@ -73,12 +76,12 @@ namespace Teachly.Application.Services
 
             var student = Student.Create(
                 Guid.NewGuid(),
-                user.Value.Id, 
-                institutionId, 
-                educationLevel, 
+                user.Value.Id,
+                institutionId,
+                educationLevel,
                 parentPhone);
 
-            if(student.IsFailure)
+            if (student.IsFailure)
             {
                 throw new InvalidOperationException(student.Error);
             }
@@ -88,11 +91,11 @@ namespace Teachly.Application.Services
         }
 
         public async Task RegisterTutor(
-            string userName, 
-            string firstName, 
-            string lastName, 
-            int age, 
-            string email, 
+            string userName,
+            string firstName,
+            string lastName,
+            int age,
+            string email,
             string password,
             string? description)
         {
@@ -103,7 +106,15 @@ namespace Teachly.Application.Services
 
             var hashedPassword = _passwordHasher.Generate(password);
 
-            var user = User.Create(Guid.NewGuid(), userName, firstName, lastName, age, email, hashedPassword, UserRole.Tutor);
+            var user = User.Create(
+                Guid.NewGuid(),
+                userName,
+                firstName,
+                lastName,
+                age,
+                email,
+                hashedPassword,
+                UserRole.Tutor);
 
             if (user.IsFailure)
             {
@@ -111,8 +122,8 @@ namespace Teachly.Application.Services
             }
 
             var tutor = Tutor.Create(
-                Guid.NewGuid(), 
-                user.Value.Id, 
+                Guid.NewGuid(),
+                user.Value.Id,
                 description);
 
             if (tutor.IsFailure)
@@ -140,9 +151,64 @@ namespace Teachly.Application.Services
                 throw new InvalidOperationException("Неправильно введен пароль");
             }
 
-            var token = _jwtProvider.GenerateToken(user);
+            return _jwtProvider.GenerateToken(user);
+        }
 
-            return token;
+        public async Task<(Student Student, User User)> GetStudentProfile(Guid studentId)
+        {
+            var student = await _studentsRepository.GetById(studentId);
+
+            if (student is null)
+            {
+                throw new InvalidOperationException("Обучающийся не найден");
+            }
+
+            var user = await _usersRepository.GetById(student.UserId);
+
+            if (user is null)
+            {
+                throw new InvalidOperationException("Пользователь обучающегося не найден");
+            }
+
+            return (student, user);
+        }
+
+        public async Task<(Tutor Tutor, User User)> GetTutorProfile(Guid tutorId)
+        {
+            var tutor = await _tutorsRepository.GetById(tutorId);
+
+            if (tutor is null)
+            {
+                throw new InvalidOperationException("Репетитор не найден");
+            }
+
+            var user = await _usersRepository.GetById(tutor.UserId);
+
+            if (user is null)
+            {
+                throw new InvalidOperationException("Пользователь репетитора не найден");
+            }
+
+            return (tutor, user);
+        }
+
+        public async Task SetAvatar(Guid userId, string avatarUrl)
+        {
+            var user = await _usersRepository.GetById(userId);
+
+            if (user is null)
+            {
+                throw new InvalidOperationException("Пользователь не найден");
+            }
+
+            var result = user.SetAvatarUrl(avatarUrl);
+
+            if (result.IsFailure)
+            {
+                throw new InvalidOperationException(result.Error);
+            }
+
+            await _usersRepository.Update(user);
         }
     }
 }

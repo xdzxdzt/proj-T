@@ -54,6 +54,18 @@ namespace Teachly.Application.Services
             await _tutorTasksRepository.Add(tutorTask.Value);
         }
 
+        public async Task<List<TutorTask>> GetByLessonPackageId(Guid lessonPackageId)
+        {
+            var lessonPackage = await _lessonPackagesRepository.GetById(lessonPackageId);
+
+            if (lessonPackage is null)
+            {
+                throw new InvalidOperationException("Пакет занятий не найден");
+            }
+
+            return await _tutorTasksRepository.GetByLessonPackageId(lessonPackageId);
+        }
+
         public async Task CloseTask(Guid tutorId, Guid taskId)
         {
             var tutorTask = await _tutorTasksRepository.GetById(taskId);

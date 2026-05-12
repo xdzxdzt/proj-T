@@ -76,5 +76,17 @@ namespace Teachly.Application.Services
 
             await _solutionsRepository.Add(solution.Value);
         }
+
+        public async Task<List<Solution>> GetAllByStudentId(Guid studentId)
+        {
+            var student = await _studentsRepository.GetById(studentId);
+
+            if (student is null)
+            {
+                throw new InvalidOperationException("Обучающийся не найден");
+            }
+
+            return await _solutionsRepository.GetAllByStudentId(student.Id);
+        }
     }
 }
