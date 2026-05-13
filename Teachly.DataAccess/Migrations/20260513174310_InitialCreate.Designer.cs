@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Teachly.DataAccess;
@@ -11,9 +12,11 @@ using Teachly.DataAccess;
 namespace Teachly.DataAccess.Migrations
 {
     [DbContext(typeof(TeachlyDbContext))]
-    partial class TeachlyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260513174310_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,36 +48,6 @@ namespace Teachly.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Institutions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1b2d6d50-c1d6-4f63-8a5a-ffbb7f4f6e5a"),
-                            City = "Самара",
-                            Name = "Средняя общеобразовательная школа N 1",
-                            Type = "School"
-                        },
-                        new
-                        {
-                            Id = new Guid("80b2760a-77d4-4bda-a501-9f42688bc8d4"),
-                            City = "Самара",
-                            Name = "Лицей информационных технологий",
-                            Type = "School"
-                        },
-                        new
-                        {
-                            Id = new Guid("0deaa567-50ad-46c5-926f-e8d35190236a"),
-                            City = "Самара",
-                            Name = "Самарский колледж сервиса производственного оборудования",
-                            Type = "College"
-                        },
-                        new
-                        {
-                            Id = new Guid("87090f4c-40c6-4fb5-8e3e-bd7530362f50"),
-                            City = "Самара",
-                            Name = "Самарский университет",
-                            Type = "University"
-                        });
                 });
 
             modelBuilder.Entity("Teachly.DataAccess.Entities.LessonPackageEntity", b =>
@@ -248,48 +221,6 @@ namespace Teachly.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Subjects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("4e3359ab-542a-4486-99e1-69cf6651f3a1"),
-                            Name = "Математика"
-                        },
-                        new
-                        {
-                            Id = new Guid("e7b2ff76-a47d-4da2-8755-ae617de01f94"),
-                            Name = "Русский язык"
-                        },
-                        new
-                        {
-                            Id = new Guid("334a4427-66eb-411c-903a-f7c2a62b9f7c"),
-                            Name = "Английский язык"
-                        },
-                        new
-                        {
-                            Id = new Guid("f27ce41c-d725-417c-b49f-f668918c34db"),
-                            Name = "Информатика"
-                        },
-                        new
-                        {
-                            Id = new Guid("a3901178-731e-4691-80b7-62d322735f18"),
-                            Name = "Физика"
-                        },
-                        new
-                        {
-                            Id = new Guid("f54acc99-b9b0-4bcf-8d98-8e5842959be3"),
-                            Name = "Химия"
-                        },
-                        new
-                        {
-                            Id = new Guid("3ba55ab4-9ba4-491e-a3cc-752067db3b91"),
-                            Name = "Биология"
-                        },
-                        new
-                        {
-                            Id = new Guid("b7a24854-3d03-4c31-bc00-7e4ce5d07aaa"),
-                            Name = "История"
-                        });
                 });
 
             modelBuilder.Entity("Teachly.DataAccess.Entities.TutorEntity", b =>

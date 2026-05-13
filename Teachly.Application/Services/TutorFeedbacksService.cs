@@ -1,4 +1,4 @@
-﻿using Teachly.Application.Interfaces.Repositories;
+using Teachly.Application.Interfaces.Repositories;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Core.Models;
 
@@ -11,23 +11,33 @@ namespace Teachly.Application.Services
         private readonly ITutorTasksRepository _tutorTasksRepository;
         private readonly ILessonPackagesRepository _lessonPackagesRepository;
         private readonly ITutorSubjectsRepository _tutorSubjectsRepository;
+        private readonly ITutorsRepository _tutorsRepository;
 
         public TutorFeedbacksService(
             ITutorFeedbacksRepository tutorFeedbacksRepository,
             ISolutionsRepository solutionsRepository,
             ITutorTasksRepository tutorTasksRepository,
             ILessonPackagesRepository lessonPackagesRepository,
-            ITutorSubjectsRepository tutorSubjectsRepository)
+            ITutorSubjectsRepository tutorSubjectsRepository,
+            ITutorsRepository tutorsRepository)
         {
             _tutorFeedbacksRepository = tutorFeedbacksRepository;
             _solutionsRepository = solutionsRepository;
             _tutorTasksRepository = tutorTasksRepository;
             _lessonPackagesRepository = lessonPackagesRepository;
             _tutorSubjectsRepository = tutorSubjectsRepository;
+            _tutorsRepository = tutorsRepository;
         }
 
-        public async Task GiveFeedback(Guid tutorId, Guid solutionId, short grade, string tutorComment)
+        public async Task GiveFeedback(Guid userId, Guid solutionId, short grade, string tutorComment)
         {
+            var tutor = await _tutorsRepository.GetByUserId(userId);
+
+            if (tutor is null)
+            {
+                throw new InvalidOperationException("Репетитор не найден");
+            }
+
             var solution = await _solutionsRepository.GetById(solutionId);
 
             if (solution is null)
@@ -56,7 +66,7 @@ namespace Teachly.Application.Services
                 throw new InvalidOperationException("Предмет репетитора не найден");
             }
 
-            if (tutorSubject.TutorId != tutorId)
+            if (tutorSubject.TutorId != tutor.Id)
             {
                 throw new InvalidOperationException("Репетитор не может проверить чужое решение");
             }
@@ -69,12 +79,12 @@ namespace Teachly.Application.Services
             }
 
             var feedback = TutorFeedback.Create(
-                Guid.NewGuid(), 
-                solution.Id, 
-                tutorComment, 
+                Guid.NewGuid(),
+                solution.Id,
+                tutorComment,
                 grade);
 
-            if(feedback.IsFailure)
+            if (feedback.IsFailure)
             {
                 throw new InvalidOperationException(feedback.Error);
             }

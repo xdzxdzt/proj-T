@@ -1,4 +1,4 @@
-﻿using Teachly.Application.Interfaces.Repositories;
+using Teachly.Application.Interfaces.Repositories;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Core.Models;
 
@@ -20,22 +20,21 @@ namespace Teachly.Application.Services
             _subjectsRepository = subjectsRepository;
         }
 
-        public async Task AddSubjectToTutor(Guid tutorId, Guid subjectId, decimal pricePerLesson)
+        public async Task AddSubjectToTutor(Guid userId, Guid subjectId, decimal pricePerLesson)
         {
-            var subject = await _subjectsRepository.GetById(subjectId);
-
-            if(subject is null)
-            {
-                throw new InvalidOperationException("Предмет не существует");
-            }
-
-            var tutor = await _tutorsRepository.GetById(tutorId);
+            var tutor = await _tutorsRepository.GetByUserId(userId);
 
             if (tutor is null)
             {
                 throw new InvalidOperationException("Репетитор не найден");
             }
 
+            var subject = await _subjectsRepository.GetById(subjectId);
+
+            if (subject is null)
+            {
+                throw new InvalidOperationException("Предмет не существует");
+            }
 
             var alreadyExists = await _tutorSubjectRepository.Exists(tutor.Id, subject.Id);
 
@@ -50,7 +49,7 @@ namespace Teachly.Application.Services
                 subject.Id,
                 pricePerLesson);
 
-            if(subjectTutor.IsFailure)
+            if (subjectTutor.IsFailure)
             {
                 throw new InvalidOperationException(subjectTutor.Error);
             }

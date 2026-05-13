@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Teachly.API.Endpoints;
 using Teachly.API.EndPoints;
+using Teachly.Core.Enums;
 using Teachly.Infrastructure;
 
 namespace Teachly.API.Extensions
@@ -19,6 +20,8 @@ namespace Teachly.API.Extensions
             app.MapSolutionsEndpoints();
             app.MapReviewsEndpoints();
             app.MapLessonsEndpoints();
+            app.MapReportsEndpoints();
+            app.MapDictionariesEndpoints();
         }
 
         public static void AddApiAuthentication(this IServiceCollection services, IOptions<JwtOptions> jwtOptions)
@@ -46,7 +49,19 @@ namespace Teachly.API.Extensions
                         } 
                     };
                 });
-            services.AddAuthorization();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("TutorPolicy", policy =>
+                {
+                    policy.RequireRole(UserRole.Tutor.ToString());
+                });
+
+                options.AddPolicy("StudentPolicy", policy =>
+                {
+                    policy.RequireRole(UserRole.Student.ToString());
+                });
+            });
         }
     }
 }

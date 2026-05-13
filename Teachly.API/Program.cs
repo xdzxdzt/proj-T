@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.CookiePolicy;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Application.Services;
 using Teachly.API.Extensions;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -20,6 +21,9 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 
 services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
+var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>()
+    ?? throw new InvalidOperationException("JwtOptions section is not configured");
+services.AddApiAuthentication(Options.Create(jwtOptions));
 
 services.AddSwaggerGen();
 
@@ -49,7 +53,6 @@ services.AddScoped<ITutorTasksService, TutorTasksService>();
 services.AddScoped<ISolutionsService, SolutionsService>();
 services.AddScoped<ITutorFeedbacksService, TutorFeedbacksService>();
 services.AddScoped<IReviewsService, ReviewsService>();
-//Нужно доделать
 services.AddScoped<IReportsService, ReportsService>();
 
 var app = builder.Build();

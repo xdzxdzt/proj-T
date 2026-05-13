@@ -1,6 +1,11 @@
 @Teachly.API_HostAddress = http://localhost:5159
 
-GET {{Teachly.API_HostAddress}}/weatherforecast/
+GET {{Teachly.API_HostAddress}}/dictionaries/subjects
+Accept: application/json
+
+###
+
+GET {{Teachly.API_HostAddress}}/dictionaries/institutions
 Accept: application/json
 
 ###

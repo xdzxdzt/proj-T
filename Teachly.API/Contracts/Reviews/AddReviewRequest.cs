@@ -8,8 +8,6 @@ namespace Teachly.API.Contracts.Reviews
         [Required]
         Guid TutorId,
         [Required]
-        Guid StudentId,
-        [Required]
         [MaxLength(Review.MAX_LENGTH_REVIEWTEXT)]
         string ReviewText,
         [Required]

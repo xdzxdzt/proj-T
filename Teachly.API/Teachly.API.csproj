@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\uploads\avatars\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>

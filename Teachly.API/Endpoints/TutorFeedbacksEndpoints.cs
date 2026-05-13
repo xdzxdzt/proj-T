@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Teachly.API.Contracts.TutorFeedbacks;
+using Teachly.API.Extensions;
 using Teachly.Application.Interfaces.Services;
 
 namespace Teachly.API.Endpoints
@@ -11,18 +12,24 @@ namespace Teachly.API.Endpoints
         {
             var feedback = app.MapGroup("tutor-feedback");
 
-            feedback.MapPost("", GiveFeedback);
+            feedback.MapPost("", GiveFeedback).RequireAuthorization("TutorPolicy");
             return app;
         }
 
         private static async Task<IResult> GiveFeedback(
             [FromBody] FeedbackRequest request,
+            HttpContext context,
             ITutorFeedbacksService tutorFeedbackService)
         {
             try
             {
+                if (!context.User.TryGetUserId(out var userId))
+                {
+                    return Results.Unauthorized();
+                }
+
                 await tutorFeedbackService.GiveFeedback(
-                    request.TutorId,
+                    userId,
                     request.SolutionId,
                     request.Grade,
                     request.TutorComment);
@@ -31,7 +38,6 @@ namespace Teachly.API.Endpoints
             }
             catch (InvalidOperationException ex)
             {
-
                 return Results.BadRequest(new { error = ex.Message });
             }
         }

@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Teachly.API.Contracts.Reviews;
+using Teachly.API.Extensions;
 using Teachly.Application.Interfaces.Services;
 
 namespace Teachly.API.Endpoints
@@ -10,27 +11,33 @@ namespace Teachly.API.Endpoints
         {
             var auth = app.MapGroup("review");
 
-            auth.MapPost("add", AddReview);
+            auth.MapPost("add", AddReview).RequireAuthorization("StudentPolicy");
 
             return app;
         }
 
         private static async Task<IResult> AddReview(
             [FromBody] AddReviewRequest request,
+            HttpContext context,
             IReviewsService reviewService)
         {
             try
             {
+                if (!context.User.TryGetUserId(out var userId))
+                {
+                    return Results.Unauthorized();
+                }
+
                 await reviewService.CreateReview(
+                    userId,
                     request.TutorId,
-                    request.StudentId,
                     request.ReviewText,
                     request.Rating);
 
                 return Results.Ok();
             }
             catch (InvalidOperationException ex)
-            { 
+            {
                 return Results.BadRequest(new { error = ex.Message });
             }
         }

@@ -1,7 +1,8 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Teachly.API.Contracts.Auth;
 using Teachly.API.Contracts.Profiles;
+using Teachly.API.Extensions;
 using Teachly.Application.Interfaces.Services;
 
 namespace Teachly.API.EndPoints
@@ -21,6 +22,7 @@ namespace Teachly.API.EndPoints
             profiles.MapGet("students/{studentId:guid}", GetStudentProfile);
             profiles.MapGet("tutors/{tutorId:guid}", GetTutorProfile);
             profiles.MapPost("users/{userId:guid}/avatar", UploadAvatar)
+                .RequireAuthorization()
                 .DisableAntiforgery();
 
             return app;
@@ -152,11 +154,22 @@ namespace Teachly.API.EndPoints
         private static async Task<IResult> UploadAvatar(
             Guid userId,
             [Required] IFormFile avatar,
+            HttpContext context,
             IWebHostEnvironment environment,
             IUsersService usersService)
         {
             try
             {
+                if (!context.User.TryGetUserId(out var currentUserId))
+                {
+                    return Results.Unauthorized();
+                }
+
+                if (currentUserId != userId)
+                {
+                    return Results.Forbid();
+                }
+
                 if (avatar.Length == 0)
                 {
                     return Results.BadRequest(new { error = "Файл аватарки пустой" });

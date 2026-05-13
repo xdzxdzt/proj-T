@@ -1,6 +1,10 @@
 # Build results
 [Bb]in/
 [Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Aa]rtifacts/
+[Pp]ublish/
 [Ll]og/
 [Ll]ogs/
 
@@ -16,6 +20,14 @@
 
 # VS Code
 .vscode/
+
+# Frontend / Angular / Node
+node_modules/
+dist/
+.angular/
+.npm/
+coverage/
+*.tsbuildinfo
 
 # NuGet
 *.nupkg
@@ -45,6 +57,12 @@ TestResults/
 *.trx
 coverage/
 coverage.cobertura.xml
+
+# Local databases / uploads
+*.db
+*.db-shm
+*.db-wal
+wwwroot/uploads/
 
 # User secrets / local config
 secrets.json

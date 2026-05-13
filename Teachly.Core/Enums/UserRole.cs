@@ -3,7 +3,6 @@
     public enum UserRole
     {
         Student,
-        Tutor,
-        Admin
+        Tutor
     }
 }

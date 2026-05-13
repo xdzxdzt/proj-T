@@ -5,8 +5,6 @@ namespace Teachly.API.Contracts.TutorFeedbacks
 {
     public record FeedbackRequest(
         [Required]
-        Guid TutorId,
-        [Required]
         Guid SolutionId,
         [Required]
         [Range(2, 5)]

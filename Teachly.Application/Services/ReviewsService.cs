@@ -1,4 +1,4 @@
-﻿using Teachly.Application.Interfaces.Repositories;
+using Teachly.Application.Interfaces.Repositories;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Core.Models;
 
@@ -11,7 +11,7 @@ namespace Teachly.Application.Services
         private readonly IStudentsRepository _studentsRepository;
 
         public ReviewsService(
-            IReviewsRepository reviewsRepository, 
+            IReviewsRepository reviewsRepository,
             ITutorsRepository tutorsRepository,
             IStudentsRepository studentsRepository)
         {
@@ -21,28 +21,28 @@ namespace Teachly.Application.Services
         }
 
         public async Task CreateReview(
+            Guid userId,
             Guid tutorId,
-            Guid studentId,
-            string reviewText, 
+            string reviewText,
             short rating)
         {
-            var tutor = await _tutorsRepository.GetById(tutorId);
-
-            if(tutor is null)
-            {
-                throw new InvalidOperationException("Репетитор не найден");
-            }
-
-            var student = await _studentsRepository.GetById(studentId);
+            var student = await _studentsRepository.GetByUserId(userId);
 
             if (student is null)
             {
                 throw new InvalidOperationException("Обучающийся не найден");
             }
 
+            var tutor = await _tutorsRepository.GetById(tutorId);
+
+            if (tutor is null)
+            {
+                throw new InvalidOperationException("Репетитор не найден");
+            }
+
             var alreadyExists = await _reviewsRepository.Exists(student.Id, tutor.Id);
 
-            if(alreadyExists)
+            if (alreadyExists)
             {
                 throw new InvalidOperationException("Отзыв уже существует");
             }
@@ -54,7 +54,7 @@ namespace Teachly.Application.Services
                 reviewText,
                 rating);
 
-            if(review.IsFailure)
+            if (review.IsFailure)
             {
                 throw new InvalidOperationException(review.Error);
             }
@@ -69,6 +69,5 @@ namespace Teachly.Application.Services
             await _reviewsRepository.Add(review.Value);
             await _tutorsRepository.Update(tutor);
         }
-        
     }
 }
