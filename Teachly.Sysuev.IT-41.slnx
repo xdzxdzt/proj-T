@@ -3,5 +3,8 @@
   <Project Path="Teachly.Application/Teachly.Application.csproj" />
   <Project Path="Teachly.Core/Teachly.Core.csproj" />
   <Project Path="Teachly.DataAccess/Teachly.DataAccess.csproj" />
+  <Project Path="Teachly.FunctionalTests/Teachly.FunctionalTests.csproj" Id="34d1b9f2-459f-41ad-94ff-3eb7b7581236" />
   <Project Path="Teachly.Infrastructure/Teachly.Infrastructure.csproj" Id="7422b717-ca4d-408c-ac0a-acc9385caf42" />
+  <Project Path="Teachly.IntegrationTests/Teachly.IntegrationTests.csproj" Id="0ede7314-72f6-4a35-af12-83f24b5507cf" />
+  <Project Path="Teachly.UnitTests/Teachly.UnitTests.csproj" Id="7b06e3e3-56ec-460d-a388-4424613b4a99" />
 </Solution>

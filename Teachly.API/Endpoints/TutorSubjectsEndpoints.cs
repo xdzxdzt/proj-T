@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Teachly.API.Contracts.TutorSubject;
 using Teachly.API.Extensions;
+using Teachly.Application.Reports;
 using Teachly.Application.Interfaces.Services;
 
 namespace Teachly.API.Endpoints
@@ -11,6 +12,8 @@ namespace Teachly.API.Endpoints
         {
             var tutorSubjects = app.MapGroup("tutor-subjects");
             tutorSubjects.MapPost("", AddSubjectToTutor).RequireAuthorization("TutorPolicy");
+            tutorSubjects.MapGet("", GetAll);
+            tutorSubjects.MapGet("tutors/{tutorId:guid}", GetByTutorId);
             return app;
         }
 
@@ -37,6 +40,55 @@ namespace Teachly.API.Endpoints
             {
                 return Results.BadRequest(new { error = ex.Message });
             }
+        }
+
+        private static async Task<IResult> GetAll(
+            ITutorSubjectService tutorSubjectService)
+        {
+            try
+            {
+                var tutorSubjects = await tutorSubjectService.GetAll();
+
+                return Results.Ok(tutorSubjects.Select(ToResponse).ToList());
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Results.BadRequest(new { error = ex.Message });
+            }
+        }
+
+        private static async Task<IResult> GetByTutorId(
+            Guid tutorId,
+            ITutorSubjectService tutorSubjectService)
+        {
+            try
+            {
+                var tutorSubjects = await tutorSubjectService.GetByTutorId(tutorId);
+
+                return Results.Ok(tutorSubjects.Select(ToResponse).ToList());
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Results.BadRequest(new { error = ex.Message });
+            }
+        }
+
+        private static TutorSubjectResponse ToResponse(TutorSubjectInfo tutorSubject)
+        {
+            return new TutorSubjectResponse(
+                tutorSubject.Id,
+                tutorSubject.TutorId,
+                tutorSubject.TutorUserId,
+                tutorSubject.TutorUserName,
+                tutorSubject.TutorFirstName,
+                tutorSubject.TutorLastName,
+                tutorSubject.TutorAvatarUrl,
+                tutorSubject.TutorDescription,
+                tutorSubject.TutorAverageRating,
+                tutorSubject.TutorRatingCount,
+                tutorSubject.SubjectId,
+                tutorSubject.SubjectName,
+                tutorSubject.PricePerLesson);
         }
     }
 }

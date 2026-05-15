@@ -9,3 +9,13 @@ GET {{Teachly.API_HostAddress}}/dictionaries/institutions
 Accept: application/json
 
 ###
+
+GET {{Teachly.API_HostAddress}}/tutor-subjects
+Accept: application/json
+
+###
+
+GET {{Teachly.API_HostAddress}}/lesson-package/my
+Accept: application/json
+
+###

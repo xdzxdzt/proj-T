@@ -4,7 +4,6 @@ using Teachly.Application.Interfaces.Repositories;
 using Teachly.DataAccess;
 using Teachly.DataAccess.Repositories;
 using Teachly.Infrastructure;
-using Teachly.API.EndPoints;
 using Microsoft.AspNetCore.CookiePolicy;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Application.Services;

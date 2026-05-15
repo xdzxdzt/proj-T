@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Teachly.API.Endpoints;
-using Teachly.API.EndPoints;
 using Teachly.Core.Enums;
 using Teachly.Infrastructure;
 

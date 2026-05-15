@@ -42,6 +42,17 @@ namespace Teachly.DataAccess.Repositories
             return MapToDomain(tutorEntity);
         }
 
+        public async Task<List<TutorSubject>> GetAll()
+        {
+            var tutorSubjectEntities = await _context.TutorSubjects
+                .AsNoTracking()
+                .ToListAsync();
+
+            return tutorSubjectEntities
+                .Select(MapToDomain)
+                .ToList();
+        }
+
         public async Task<List<TutorSubject>> GetAllByTutorId(Guid tutorId)
         {
             var tutorSubjectEntities = await _context.TutorSubjects

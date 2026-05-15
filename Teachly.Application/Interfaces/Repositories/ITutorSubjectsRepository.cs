@@ -6,6 +6,7 @@ namespace Teachly.Application.Interfaces.Repositories
     {
         Task Add(TutorSubject tutorSubject);
         Task<TutorSubject?> GetById(Guid id);
+        Task<List<TutorSubject>> GetAll();
         Task<List<TutorSubject>> GetAllByTutorId(Guid tutorId);
         Task<bool> Exists(Guid tutorId, Guid subjectId);
     }

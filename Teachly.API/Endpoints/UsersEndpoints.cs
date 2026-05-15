@@ -5,7 +5,7 @@ using Teachly.API.Contracts.Profiles;
 using Teachly.API.Extensions;
 using Teachly.Application.Interfaces.Services;
 
-namespace Teachly.API.EndPoints
+namespace Teachly.API.Endpoints
 {
     public static class UsersEndpoints
     {
