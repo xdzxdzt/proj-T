@@ -1,4 +1,4 @@
-using Teachly.Application.Interfaces.Auth;
+﻿using Teachly.Application.Interfaces.Auth;
 using Teachly.Application.Interfaces.Repositories;
 using Teachly.Application.Interfaces.Services;
 using Teachly.Core.Enums;
@@ -156,19 +156,11 @@ namespace Teachly.Application.Services
 
         public async Task<(Student Student, User User)> GetStudentProfile(Guid studentId)
         {
-            var student = await _studentsRepository.GetById(studentId);
+            var student = await _studentsRepository.GetById(studentId) 
+                ?? throw new KeyNotFoundException("Обучающийся не найден");
 
-            if (student is null)
-            {
-                throw new InvalidOperationException("Обучающийся не найден");
-            }
-
-            var user = await _usersRepository.GetById(student.UserId);
-
-            if (user is null)
-            {
-                throw new InvalidOperationException("Пользователь обучающегося не найден");
-            }
+            var user = await _usersRepository.GetById(student.UserId)
+                ?? throw new KeyNotFoundException("Пользователь обучающегося не найден");
 
             return (student, user);
         }

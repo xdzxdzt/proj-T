@@ -77,8 +77,6 @@ app.UseCookiePolicy(new CookiePolicyOptions
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-
 app.AddMappedEndpoints();
 
 app.Run();
